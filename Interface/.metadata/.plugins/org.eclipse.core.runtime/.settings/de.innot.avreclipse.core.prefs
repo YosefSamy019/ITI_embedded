@@ -1,0 +1,10 @@
+avrpaths//systempath/AVRDUDE=E\:\\toolchains\\Win-AVR\\bin
+avrpaths//systempath/AVRGCC=E\:\\toolchains\\Win-AVR\\bin
+avrpaths//systempath/AVRINCLUDE=E\:\\toolchains\\Win-AVR\\avr\\include
+avrpaths//systempath/MAKE=E\:\\toolchains\\Win-AVR\\utils\\bin
+avrpaths//systempath/PDFPATH=
+avrpaths/AVRDUDE=E\:\\programs\\IMT_SDK_Win_64\\WinAVR\\bin
+avrpaths/AVRGCC=E\:\\programs\\IMT_SDK_Win_64\\WinAVR\\bin
+avrpaths/AVRINCLUDE=E\:\\programs\\IMT_SDK_Win_64\\WinAVR\\avr\\include
+avrpaths/MAKE=E\:\\programs\\IMT_SDK_Win_64\\WinAVR\\utils\\bin
+eclipse.preferences.version=1

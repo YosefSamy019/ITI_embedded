@@ -1,0 +1,107 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+max                 0x2               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x00000000         0x00008000         xr
+sram             0x00000060         0x00000800         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000000                . = 0x0
+
+.text           0x00000000      0x1d2
+                0x00000000                _TEXT_START = .
+ *(.vectors*)
+ .vectors       0x00000000       0x26 startup_asm.o
+ *(.text*)
+ .text          0x00000026       0x68 main.o
+                0x00000026                main
+ .text          0x0000008e      0x116 startup_c.o
+                0x0000008e                _startup_c
+ .text          0x000001a4       0x2e startup_asm.o
+                0x000001a4                _reset
+                0x000001d2                . = ALIGN (0x2)
+                0x000001d2                _TEXT_END = .
+
+.trampolines    0x000001d2        0x0
+ .trampolines   0x000001d2        0x0 linker stubs
+
+.rodata         0x000001d2        0x0
+                0x000001d2                _RODATA_START = .
+ *(.rodata*)
+                0x000001d2                . = ALIGN (0x2)
+                0x000001d2                _RODATA_END = .
+
+.data           0x00000060        0x0 load address 0x000001d2
+                0x00000060                _DATA_START = .
+ *(.data*)
+ .data          0x00000060        0x0 main.o
+ .data          0x00000060        0x0 startup_c.o
+ .data          0x00000060        0x0 startup_asm.o
+                0x00000060                . = ALIGN (0x2)
+                0x00000060                _DATA_END = .
+
+.bss            0x00000060        0x2
+                0x00000060                _BSS_START = .
+ *(.bss*)
+ .bss           0x00000060        0x0 main.o
+ .bss           0x00000060        0x0 startup_c.o
+ .bss           0x00000060        0x0 startup_asm.o
+                0x00000060                . = ALIGN (0x2)
+                0x00000060                _BSS_END = .
+ COMMON         0x00000060        0x2 main.o
+                0x00000060                max
+LOAD main.o
+LOAD startup_c.o
+LOAD startup_asm.o
+OUTPUT(test.elf elf32-avr)
+LOAD linker stubs
+
+.debug_abbrev   0x00000000      0x127
+ .debug_abbrev  0x00000000       0x6a main.o
+ .debug_abbrev  0x0000006a       0xab startup_c.o
+ .debug_abbrev  0x00000115       0x12 startup_asm.o
+
+.debug_info     0x00000000      0x25a
+ .debug_info    0x00000000       0x74 main.o
+ .debug_info    0x00000074      0x189 startup_c.o
+ .debug_info    0x000001fd       0x5d startup_asm.o
+
+.debug_line     0x00000000      0x220
+ .debug_line    0x00000000       0x78 main.o
+ .debug_line    0x00000078      0x139 startup_c.o
+ .debug_line    0x000001b1       0x6f startup_asm.o
+
+.debug_frame    0x00000000       0x60
+ .debug_frame   0x00000000       0x20 main.o
+ .debug_frame   0x00000020       0x40 startup_c.o
+
+.debug_pubnames
+                0x00000000       0x44
+ .debug_pubnames
+                0x00000000       0x23 main.o
+ .debug_pubnames
+                0x00000023       0x21 startup_c.o
+
+.debug_aranges  0x00000000       0x68
+ .debug_aranges
+                0x00000000       0x20 main.o
+ .debug_aranges
+                0x00000020       0x20 startup_c.o
+ .debug_aranges
+                0x00000040       0x28 startup_asm.o
+
+.debug_str      0x00000000      0x12b
+ .debug_str     0x00000000       0x45 main.o
+                                 0x52 (size before relaxing)
+ .debug_str     0x00000045       0xe6 startup_c.o
+                                0x153 (size before relaxing)
+
+.debug_ranges   0x00000000       0x20
+ .debug_ranges  0x00000000       0x20 startup_asm.o

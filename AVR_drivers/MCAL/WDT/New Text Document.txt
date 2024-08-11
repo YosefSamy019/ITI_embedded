@@ -1,0 +1,19 @@
+/*
+ * WDT_private.h
+ *
+ *  Created on: May 18, 2022
+ *      Author: Mohammed Ramadan
+ */
+ 
+#ifndef MCAL_WDT_WDT_PRIVATE_H_
+#define MCAL_WDT_WDT_PRIVATE_H_
+
+/*watch dog timer control register*/
+#define WDP0   0 /*watch dog timer prescaller 0*/
+#define WDP1   1 /*watch dog timer prescaller 1*/
+#define WDP2   2 /*watch dog timer prescaller 2*/
+#define WDE    3 /*watch dog timer Enable*/
+#define WDTOE  4 /*watch dog timer output Enable*/
+
+#define WDT_DISABLE 0b00011000 /*set WDE and WDTOE in the same line*/
+#endif /* MCAL_WDT_WDT_PRIVATE_H_ */

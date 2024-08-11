@@ -1,0 +1,14 @@
+
+#include <avr/io.h>
+#define infinity (;;)
+
+
+int main(void){
+	DDRA = 0x00;
+
+	for infinity {
+		PORTA = 0x11;
+	}
+
+	return 0;
+}
