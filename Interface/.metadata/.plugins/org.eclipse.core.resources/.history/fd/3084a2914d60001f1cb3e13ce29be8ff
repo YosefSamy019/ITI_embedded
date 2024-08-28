@@ -1,0 +1,74 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 21, 2024
+ *      Author: Mahmoud_Saad
+ */
+
+
+#include "LIB/bit_math.h"
+#include "LIB/std_types.h"
+
+#include "HAL/LCD/CLCD_interface.h"
+#include "HAL/LCD/CLCD_config.h"
+#include "HAL/LCD/CLCD_private.h"
+
+#include "HAL/KPD/KPD_Interface.h"
+#include "HAL/KPD/KPD_Config.h"
+#include "HAL/KPD/KPD_private.h"
+
+#include <util/delay.h>
+
+int main(void )
+{
+	HKPD_Void_Init();
+	HLCD_Void_INIT();
+	u8 Get_Number1;
+	u8 Get_Operation;
+	u8 Get_Number2;
+	u8 GET_VALUE;
+	Get_Number1=HKPD_u8_GetPressed();
+	HCLCD_void_SendData(Get_Number1);
+	Get_Operation=HKPD_u8_GetPressed();
+	HCLCD_void_SendData(Get_Operation);
+	Get_Number2=HKPD_u8_GetPressed();
+	HCLCD_void_SendData(Get_Number2);
+	GET_VALUE=HKPD_u8_GetPressed();
+	if(GET_VALUE== '=')
+	{
+		u8 RESULT;
+		switch(Get_Operation)
+		{
+		case '+':
+			RESULT=Get_Number1+Get_Number2;
+			HCLCD_void_SendData(floor(RESULT/10)+'0');
+			HCLCD_void_SendData(RESULT%10+'0');
+			break;
+		case '-':
+			if(Get_Number1>=Get_Number2)
+			{
+				RESULT=Get_Number1-Get_Number2;
+				HCLCD_void_SendData(RESULT);
+			}
+			else
+			{
+				HCLCD_void_SendData('-');
+				RESULT=Get_Number2-Get_Number1;
+				HCLCD_void_SendData(RESULT);
+			}
+			break;
+		case '*':
+			break;
+		case '/':
+			break;
+		}
+
+	}
+
+	while(1)
+	{
+
+	}
+
+	return 0;
+}

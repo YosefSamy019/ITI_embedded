@@ -1,0 +1,68 @@
+/*
+ * KPD_Config.h
+ *
+ *  Created on: Aug 8, 2024
+ *      Author: Mahmoud_Saad
+ */
+
+#ifndef HAL_KPD_KPD_CONFIG_H_
+#define HAL_KPD_KPD_CONFIG_H_
+
+/*********************************/
+/********** Keypad buttons *******/
+
+u8 KPD_u8_Button[4][4]={
+		{'7','8','9','/'},
+		{'4','5','6','*'},
+		{'1','2','3','-'},
+		{'C','0','=','+'}
+};
+
+
+/*********************************/
+/***** CONFIGURE PORT ************/
+/*options
+ * DIO_u8_PORTA
+ * DIO_u8_PORTB
+ * DIO_u8_PORTC
+ * DIO_u8_PORTD
+ */
+
+#define KPD_PORT DIO_u8_PORTD
+
+/************************************/
+/*** configure pins **************/
+#define KPD_ROW_1  DIO_PIN_0
+#define KPD_ROW_2  DIO_PIN_1
+#define KPD_ROW_3  DIO_PIN_2
+#define KPD_ROW_4  DIO_PIN_3
+
+#define KPD_COL_1  DIO_PIN_4
+#define KPD_COL_2  DIO_PIN_5
+#define KPD_COL_3  DIO_PIN_6
+#define KPD_COL_4  DIO_PIN_7
+
+/*********************************/
+
+#define KPD_ROW_INIT  DIO_PIN_0
+#define KPD_ROW_END   DIO_PIN_3
+
+#define KPD_COL_INIT  DIO_PIN_4
+#define KPD_COL_END   DIO_PIN_7
+
+
+/*********************************/
+
+
+#define KPD_Input    DIO_u8_PIN_IN
+#define KPD_Output   DIO_u8_PIN_OUT
+#define KPD_HIGH     DIO_u8_HIGH
+#define KPD_LOW      DIO_u8_LOW
+
+
+#define NOT_PRESSED  0xff
+#define PRESSED   0
+#define Debouncing_Delay 20
+
+/*********************************/
+#endif /* HAL_KPD_KPD_CONFIG_H_ */

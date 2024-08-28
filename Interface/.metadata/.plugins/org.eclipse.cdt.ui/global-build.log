@@ -1,39 +1,45 @@
-09:07:00 **** Incremental Build of configuration Debug for project task_sev_seg ****
+08:12:20 **** Incremental Build of configuration Debug for project CALC ****
 make all 
+Building file: ../HAL/KPD/KPD_Program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"HAL/KPD/KPD_Program.d" -MT"HAL/KPD/KPD_Program.o" -c -o "HAL/KPD/KPD_Program.o" "../HAL/KPD/KPD_Program.c"
+In file included from ../HAL/KPD/KPD_Program.c:18:
+e:/programs/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../HAL/KPD/KPD_Program.c
+ 
 Building file: ../main.c
 Invoking: AVR Compiler
 avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
-In file included from ../main.c:4:
-e:/programs/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/avr/delay.h:36:2: warning: #warning "This file has been moved to <util/delay.h>."
-In file included from e:/programs/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/avr/delay.h:37,
-                 from ../main.c:4:
+In file included from ../main.c:20:
 e:/programs/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-../main.c:21: warning: return type of 'main' is not 'int'
+../main.c: In function 'main':
+../main.c:44: warning: implicit declaration of function 'floor'
+../main.c:44: warning: incompatible implicit declaration of built-in function 'floor'
 Finished building: ../main.c
  
-Building target: task_sev_seg.elf
+Building target: CALC.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,task_sev_seg.map -mmcu=atmega32 -o "task_sev_seg.elf"  ./main.o   
-Finished building target: task_sev_seg.elf
+avr-gcc -Wl,-Map,CALC.map -mmcu=atmega32 -o "CALC.elf"  ./MCAL/DIO/DIO_program.o  ./HAL/LCD/CLCD_prog.o  ./HAL/KPD/KPD_Program.o  ./main.o   
+Finished building target: CALC.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S task_sev_seg.elf  >"task_sev_seg.lss"
-Finished building: task_sev_seg.lss
+avr-objdump -h -S CALC.elf  >"CALC.lss"
+Finished building: CALC.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex task_sev_seg.elf  "task_sev_seg.hex"
-Finished building: task_sev_seg.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex CALC.elf  "CALC.hex"
+Finished building: CALC.hex
  
 Invoking: Print Size
-avr-size --format=avr --mcu=atmega32 task_sev_seg.elf
+avr-size --format=avr --mcu=atmega32 CALC.elf
 AVR Memory Usage
 ----------------
 Device: atmega32
 
-Program:    3380 bytes (10.3% Full)
+Program:    9844 bytes (30.0% Full)
 (.text + .data + .bootloader)
 
-Data:         18 bytes (0.9% Full)
+Data:        344 bytes (16.8% Full)
 (.data + .bss + .noinit)
 
 

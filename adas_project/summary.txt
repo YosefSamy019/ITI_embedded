@@ -1,0 +1,11 @@
+2nd ECU
+
+HW:
+UART
+3 BUTTONS (SL, CSS, Gear box)
+Ultrasonic
+BAS LED
+SL LED
+LCD
+potentiometer
+Timer2

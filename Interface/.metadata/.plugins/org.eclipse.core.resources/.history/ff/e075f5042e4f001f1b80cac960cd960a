@@ -1,9 +1,0 @@
-
-#include <avr/io.h>
-
-void main(void){
-	while(1){
-
-	}
-
-}

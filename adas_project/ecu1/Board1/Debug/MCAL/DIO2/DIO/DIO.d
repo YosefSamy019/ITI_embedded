@@ -1,0 +1,15 @@
+MCAL/DIO2/DIO/DIO.o MCAL/DIO2/DIO/DIO.o: ../MCAL/DIO2/DIO/DIO.c \
+  ../MCAL/DIO2/DIO/registers.h \
+  ../MCAL/DIO2/DIO/../../../LIB2/LIB/STD_TYPES.h \
+  ../MCAL/DIO2/DIO/../../../LIB2/LIB/BIT_MATH.h ../MCAL/DIO2/DIO/DIO.h \
+  ../MCAL/DIO2/DIO/DIO_config.h
+
+../MCAL/DIO2/DIO/registers.h:
+
+../MCAL/DIO2/DIO/../../../LIB2/LIB/STD_TYPES.h:
+
+../MCAL/DIO2/DIO/../../../LIB2/LIB/BIT_MATH.h:
+
+../MCAL/DIO2/DIO/DIO.h:
+
+../MCAL/DIO2/DIO/DIO_config.h:

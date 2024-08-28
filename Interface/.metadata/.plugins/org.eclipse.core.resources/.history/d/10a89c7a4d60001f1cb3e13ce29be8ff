@@ -1,0 +1,90 @@
+/*
+ * KPD_Program.c
+ *
+ *  Created on: Aug 8, 2024
+ *      Author: Mahmoud_Saad
+ */
+
+#include "../../LIB/bit_math.h"
+#include "../../LIB/std_types.h"
+
+#include "KPD_Interface.h"
+#include "KPD_Config.h"
+#include "KPD_private.h"
+
+#include "../../MCAL/DIO/DIO_configure.h"
+#include "../../MCAL/DIO/DIO_interface.h"
+
+#include <util/delay.h>
+
+
+u8 KPD_u8_Button[4][4]={
+		{'7','8','9','/'},
+		{'4','5','6','*'},
+		{'1','2','3','-'},
+		{'C','0','=','+'}
+};
+
+
+
+void HKPD_Void_Init (void)
+{
+	/* initial row as input(pull_up) */
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_ROW_1,KPD_Input);
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_ROW_2,KPD_Input);
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_ROW_3,KPD_Input);
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_ROW_4,KPD_Input);
+
+	MDIO_VOID_WritePin(KPD_PORT,KPD_ROW_1,KPD_HIGH);
+	MDIO_VOID_WritePin(KPD_PORT,KPD_ROW_2,KPD_HIGH);
+	MDIO_VOID_WritePin(KPD_PORT,KPD_ROW_3,KPD_HIGH);
+	MDIO_VOID_WritePin(KPD_PORT,KPD_ROW_4,KPD_HIGH);
+
+	/******* initial col as output (high) ********/
+
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_COL_1,KPD_Output);
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_COL_2,KPD_Output);
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_COL_3,KPD_Output);
+	MDIO_void_SetPinDirection(KPD_PORT,KPD_COL_4,KPD_Output);
+
+	MDIO_VOID_WritePin(KPD_PORT,KPD_COL_1,KPD_HIGH);
+	MDIO_VOID_WritePin(KPD_PORT,KPD_COL_2,KPD_HIGH);
+	MDIO_VOID_WritePin(KPD_PORT,KPD_COL_3,KPD_HIGH);
+	MDIO_VOID_WritePin(KPD_PORT,KPD_COL_4,KPD_HIGH);
+
+}
+
+
+u8 HKPD_u8_GetPressed(void)
+{
+	u8 LOC_u8ReturnData = NOT_PRESSED;
+	u8 LOC_u8GetPressed;
+	/** iterators */
+	u8 LOC_u8Row ;
+	u8 LOC_u8Col ;
+
+	for(LOC_u8Col=0+KPD_COL_INIT;LOC_u8Col<=KPD_COL_END;LOC_u8Col++)
+	{
+		MDIO_VOID_WritePin(KPD_PORT,LOC_u8Col,KPD_LOW);
+		for(LOC_u8Row=0+KPD_ROW_INIT;LOC_u8Row<=KPD_ROW_END;LOC_u8Row++)
+		{
+			LOC_u8GetPressed=MDIO_u8_ReadPin(KPD_PORT,LOC_u8Row);
+			if(LOC_u8GetPressed==PRESSED)
+			{
+				_delay_ms(Debouncing_Delay);
+				LOC_u8GetPressed=MDIO_u8_ReadPin(KPD_PORT,LOC_u8Row);
+				if(LOC_u8GetPressed==PRESSED)
+				{
+					LOC_u8ReturnData=KPD_u8_Button[LOC_u8Row-KPD_ROW_INIT][LOC_u8Col-KPD_COL_INIT];
+					while(LOC_u8GetPressed==PRESSED);
+					break;
+				}
+
+			}
+		}
+		MDIO_VOID_WritePin(KPD_PORT,LOC_u8Col,KPD_HIGH);
+	}
+
+return LOC_u8ReturnData;
+}
+

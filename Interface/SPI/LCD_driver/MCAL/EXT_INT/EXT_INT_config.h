@@ -1,0 +1,22 @@
+﻿/*
+ * EXT_INT_0_config.h
+ *
+ * Created: 10/08/2024 10:33:29 ص
+ *  Author: a24e4
+ */ 
+
+
+#ifndef EXT_INT_CONFIG_H_
+#define EXT_INT_CONFIG_H_
+
+
+ //INPUT or INPUT PULL-UP
+ #define MEXT_INT_PIN_INPUT			0
+ #define MEXT_INT_PIN_INPUT_PULL_UP 1
+
+ #define MEXT_INT_0_INPUT_DIRECTION			MEXT_INT_PIN_INPUT_PULL_UP
+ #define MEXT_INT_1_INPUT_DIRECTION			MEXT_INT_PIN_INPUT_PULL_UP
+ #define MEXT_INT_2_INPUT_DIRECTION			MEXT_INT_PIN_INPUT_PULL_UP
+
+
+#endif /* EXT_INT_CONFIG_H_ */
